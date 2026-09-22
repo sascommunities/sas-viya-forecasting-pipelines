@@ -52,6 +52,7 @@ Specify an event definition table directly within the node by providing:
 - Table Name (`INEVENT` table)
 
 When supplied, the node-level INEVENT configuration overrides project-level event definitions for that node execution.
+When node-level INEVENT is supplied, a valid node-level INEVENTBY table must also be supplied.
 
 ### Node-Level INEVENTBY Support
 
@@ -61,6 +62,7 @@ Specify an event usage table directly within the node by providing:
 - Table Name (`INEVENTBY` table)
 
 INEVENTBY maps available events to specific series or BY groups. It does not define events.
+INEVENT and INEVENTBY must be configured together for node-level event processing.
 
 ### BY-Group-Aware Event Processing
 
@@ -92,19 +94,19 @@ The node introduces the following optional properties:
 
 The **Event Definitions** options map to `INEVENT`:
 
-| Property | Description |
-| --- | --- |
+| Property     | Description                                  |
+| ------------ | -------------------------------------------- |
 | Table Caslib | Caslib containing the event-definition table |
-| Table Name | Event-definition table |
+| Table Name   | Event-definition table                       |
 
 The **Event Usage** options map to `INEVENTBY`:
 
-| Property | Description |
-| --- | --- |
+| Property     | Description                             |
+| ------------ | --------------------------------------- |
 | Table Caslib | Caslib containing the event-usage table |
-| Table Name | Event-usage and mapping table |
+| Table Name   | Event-usage and mapping table           |
 
-If no node-level event tables are specified, standard project-level event processing is used.
+If no node-level event tables are specified, standard project-level event processing is used. Specifying node-level INEVENT without node-level INEVENTBY stops execution with an explicit error.
 
 ## Included Sample Data
 
@@ -119,9 +121,9 @@ This repository includes sample files that demonstrate node-level event configur
 
 `GLOBAL_EVENT_DEF_PRICEDATA` is the project-level event-definition table that can be configured under the Data tab.
 
-`LOCAL_EVENT_DEF_PRICEDATA` is the optional node-level event-definition table. If it is not provided, the global event definitions are used. If it is provided, its definitions override the global definitions for this node execution.
+`LOCAL_EVENT_DEF_PRICEDATA` is the node-level event-definition table. If it is not provided, the global event definitions are used. If it is provided, its definitions override the global definitions for this node execution and must be paired with `EVENT_USAGE_PRICEDATA`.
 
-`EVENT_USAGE_PRICEDATA` is the optional event-usage table. It maps available events to selected BY groups and dependent variables.
+`EVENT_USAGE_PRICEDATA` is the node-level event-usage table paired with `LOCAL_EVENT_DEF_PRICEDATA`. It maps available events to selected BY groups and dependent variables.
 
 ## How Event Tables Are Applied
 
