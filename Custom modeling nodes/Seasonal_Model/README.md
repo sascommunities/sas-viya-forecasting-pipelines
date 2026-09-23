@@ -10,8 +10,8 @@
 
 - [Overview](#overview)
 - [Features](#features)
-  - [Node-Level INEVENT Support](#node-level-inevent-support)
-  - [Node-Level INEVENTBY Support](#node-level-ineventby-support)
+  - [Node-Level Event Definitions Support](#node-level-event-definitions-support)
+  - [Node-Level Event Usage Support](#node-level-event-usage-support)
   - [BY-Group-Aware Event Processing](#by-group-aware-event-processing)
   - [Backward Compatibility](#backward-compatibility)
 - [Prerequisites](#prerequisites)
@@ -35,8 +35,8 @@ The node supports the following forecasting models:
 
 In addition to [standard Seasonal Modeling functionality](https://go.documentation.sas.com/doc/en/vfcdc/v_030/vfug/n1pqtrfbcgolcyn13lwsv8hr66tl.htm#p1nrep9kcgfgh6n1bzqpe7fxlwxa), this node enables:
 
-- Node-level INEVENT tables
-- Node-level INEVENTBY tables
+- Node-level Event Definitions tables
+- Node-level Event Usage tables
 - BY-group-specific event usage mappings
 - HPFEVENTS and TSMODEL event repositories
 
@@ -44,25 +44,25 @@ This allows event configurations to be applied to a specific Seasonal Modeling N
 
 ## Features
 
-### Node-Level INEVENT Support
+### Node-Level Event Definitions Support
 
 Specify an event definition table directly within the node by providing:
 
-- Table Caslib (`INEVENT` caslib)
-- Table Name (`INEVENT` table)
+- Table Caslib (Event Definitions caslib)
+- Table Name (Event Definitions table)
 
-When supplied, the node-level INEVENT configuration overrides project-level event definitions for that node execution.
-When node-level INEVENT is supplied, a valid node-level INEVENTBY table must also be supplied.
+When supplied, the node-level Event Definitions configuration overrides project-level event definitions for that node execution.
+When node-level Event Definitions is supplied, a valid node-level Event Usage table must also be supplied.
 
-### Node-Level INEVENTBY Support
+### Node-Level Event Usage Support
 
 Specify an event usage table directly within the node by providing:
 
-- Table Caslib (`INEVENTBY` caslib)
-- Table Name (`INEVENTBY` table)
+- Table Caslib (Event Usage caslib)
+- Table Name (Event Usage table)
 
-INEVENTBY maps available events to specific series or BY groups. It does not define events.
-INEVENT and INEVENTBY must be configured together for node-level event processing.
+Event Usage maps available events to specific series or BY groups. It does not define events.
+Event Definitions and Event Usage must be configured together for node-level event processing.
 
 ### BY-Group-Aware Event Processing
 
@@ -92,21 +92,21 @@ The node introduces the following optional properties:
 
 ![Custom Seasonal Modeling node event and event usage table configuration](Custom_Seasonal_Model_INEVENT_INEVENTBY.png)
 
-The **Event Definitions** options map to `INEVENT`:
+The **Event Definitions** options (underlying `INEVENT` parameter):
 
 | Property     | Description                                  |
-| ------------ | -------------------------------------------- |
+| ------------ | --------------------------------------------- |
 | Table Caslib | Caslib containing the event-definition table |
 | Table Name   | Event-definition table                       |
 
-The **Event Usage** options map to `INEVENTBY`:
+The **Event Usage** options (underlying `INEVENTBY` parameter):
 
 | Property     | Description                             |
-| ------------ | --------------------------------------- |
+| ------------ | ---------------------------------------- |
 | Table Caslib | Caslib containing the event-usage table |
 | Table Name   | Event-usage and mapping table           |
 
-If no node-level event tables are specified, standard project-level event processing is used. Specifying node-level INEVENT without node-level INEVENTBY stops execution with an explicit error.
+If no node-level event tables are specified, standard project-level event processing is used. Specifying node-level Event Definitions without node-level Event Usage stops execution with an explicit error.
 
 ## Included Sample Data
 
