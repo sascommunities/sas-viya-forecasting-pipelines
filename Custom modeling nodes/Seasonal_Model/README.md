@@ -80,7 +80,7 @@ Existing projects continue to function without modification. If node-level event
 ## Installation
 
 1. Download the custom node package:
-   - [Custom_Seasonal_Model_INEVENT_INEVENTBY.zip](Custom_Seasonal_Model_INEVENT_INEVENTBY.zip)
+   - [Custom_Seasonal_Modeling_Node.zip](Custom_Seasonal_Modeling_Node.zip)
 
 2. Import the ZIP file into SAS Visual Forecasting through The Exchange. See [Uploading Modeling Nodes](https://go.documentation.sas.com/doc/en/vfcdc/v_030/vfug/p1raxx0nayibr9n1ie3h14frduqs.htm#p0kxezlwkgzao5n19eyjzmiwgyiy).
 
@@ -90,7 +90,7 @@ Existing projects continue to function without modification. If node-level event
 
 The node introduces the following optional properties:
 
-![Custom Seasonal Modeling node event and event usage table configuration](Custom_Seasonal_Model_INEVENT_INEVENTBY.png)
+![Custom Seasonal Modeling node event and event usage table configuration](Custom_Seasonal_Modeling_Node.png)
 
 The **Event Definitions** options (underlying `INEVENT` parameter):
 
@@ -106,7 +106,7 @@ The **Event Usage** options (underlying `INEVENTBY` parameter):
 | Table Caslib | Caslib containing the event-usage table |
 | Table Name   | Event-usage and mapping table           |
 
-If no node-level event tables are specified, standard project-level event processing is used. Specifying node-level Event Definitions without node-level Event Usage stops execution with an explicit error.
+If no node-level event tables are specified, standard project-level event processing is used. If either node-level table is specified, both Event Definitions and Event Usage must be provided; otherwise, execution stops with an explicit error.
 
 ## Included Sample Data
 
